@@ -1,11 +1,11 @@
-import React from 'react';
+import React from 'react'
 
-const App = () => {
+function App (): JSX.Element {
   return (
-    <div className="pt-6 text-xl">
+    <div className='pt-6 text-xl'>
       Articlesssss
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
