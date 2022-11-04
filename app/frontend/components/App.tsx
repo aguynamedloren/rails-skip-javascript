@@ -1,10 +1,12 @@
 import gql from 'graphql-tag'
 import { useQuery } from '@apollo/client'
 import { withProvider } from './graphqlProvider'
+import { AllBooksQuery } from 'graphql/graphql'
 
 const booksQuery = gql`
   query allBooks {
     books {
+      id
       title
     }
   }
@@ -15,7 +17,7 @@ const Book: React.FC = ({ title }) => {
 }
 
 const App: React.FC = () => {
-  const { data, loading, error } = useQuery(booksQuery)
+  const { data, loading, error } = useQuery<AllBooksQuery>(booksQuery)
   if (loading) {
     return <span>Loading...</span>
   }

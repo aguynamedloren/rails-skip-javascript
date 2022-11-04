@@ -1,6 +1,7 @@
 {
   "scripts": {
-    "lint": "ts-standard --fix"
+    "lint": "ts-standard --fix",
+    "codegen": "graphql-codegen --config codegen.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",
@@ -9,6 +10,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "2.13.11",
     "@types/node": "^18.11.9",
     "@types/react": "^18.0.25",
     "@types/react-dom": "^18.0.8",
@@ -19,6 +21,7 @@
     "ts-standard": "^12.0.1",
     "typescript": "^4.8.4",
     "vite": "^3.2.0",
-    "vite-plugin-ruby": "^3.1.2"
+    "vite-plugin-ruby": "^3.1.2",
+    "@graphql-codegen/client-preset": "1.1.3"
   }
 }
