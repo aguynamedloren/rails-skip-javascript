@@ -1,5 +1,3 @@
-import React from 'react'
-
 function App (): JSX.Element {
   return (
     <div className='pt-6 text-xl'>
