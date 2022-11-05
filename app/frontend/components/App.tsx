@@ -1,15 +1,5 @@
-import gql from 'graphql-tag'
 import { withProvider } from './graphqlProvider'
 import { useAllBooksQuery } from '../graphql/generated-types'
-
-const booksQuery = gql`
-  query allBooks {
-    books {
-      id
-      title
-    }
-  }
-`
 
 const Book: React.FC = ({ title }) => {
   return <li>{title}</li>
