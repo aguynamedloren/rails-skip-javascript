@@ -1,5 +1,7 @@
 import { withGraphqlProvider } from '/components/graphqlProvider'
 import Posts from '/pages/Posts'
+import About from '/pages/About'
+import ErrorPage from '/pages/ErrorPage'
 
 import {
   createBrowserRouter,
@@ -10,8 +12,18 @@ import {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <Posts />
-  }
+    errorElement: <ErrorPage />,
+    children: [
+      { 
+        index: true,
+        element: <Posts />
+      },
+      {
+        path: '/about',
+        element: <About />
+      }          
+    ]
+  },
 ])
 
 const Routes: React.FC = () => {
