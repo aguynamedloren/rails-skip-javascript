@@ -6,7 +6,7 @@ const Book: React.FC = ({ title }) => {
 }
 
 const App: React.FC = () => {
-  const { data, loading, error } = useAllBooksQuery()
+  const { data, loading } = useAllBooksQuery()
   if (loading) {
     return <span>Loading...</span>
   }

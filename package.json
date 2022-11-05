@@ -3,6 +3,12 @@
     "lint": "ts-standard --fix",
     "codegen": "graphql-codegen --config codegen.ts"
   },
+  "ts-standard": {
+    "ignore": [
+      "dist",
+      "app/frontend/graphql/generated-types.ts"
+    ]
+  },
   "dependencies": {
     "@apollo/client": "^3.7.1",
     "graphql": "^16.6.0",

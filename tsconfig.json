@@ -20,5 +20,5 @@
     "noImplicitThis": true,
     "strictNullChecks": true,
   },
-  "include": ["app/frontend", "vite.config.ts"],
+  "include": ["app/frontend", "vite.config.ts", "codegen.ts"],
 }
