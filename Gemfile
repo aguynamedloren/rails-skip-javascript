@@ -18,6 +18,8 @@ gem "puma", "~> 5.0"
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
 
+gem "graphql", "~> 2.0"
+
 gem "vite_rails"
 
 # Use Redis adapter to run Action Cable in production
@@ -50,6 +52,7 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
+  gem "graphiql-rails"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -64,6 +67,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-
-gem "graphql", "~> 2.0"
-gem "graphiql-rails", group: :development
