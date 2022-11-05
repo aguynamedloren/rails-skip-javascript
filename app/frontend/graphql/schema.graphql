@@ -5,6 +5,14 @@ type Book {
   updatedAt: ISO8601DateTime!
 }
 
+type Comment {
+  createdAt: ISO8601DateTime!
+  post: Post!
+  text: String
+  updatedAt: ISO8601DateTime!
+  uuid: ID!
+}
+
 """
 An ISO 8601-encoded datetime
 """
@@ -19,6 +27,7 @@ type Mutation {
 
 type Post {
   body: String
+  comments: [Comment!]
   createdAt: ISO8601DateTime!
   title: String
   updatedAt: ISO8601DateTime!

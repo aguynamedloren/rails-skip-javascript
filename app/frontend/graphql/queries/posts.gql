@@ -3,5 +3,9 @@
       uuid
       title
       body
+      comments {
+        uuid
+        text
+      }
     }
   }

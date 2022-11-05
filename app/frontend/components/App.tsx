@@ -1,7 +1,7 @@
 import { withProvider } from './graphqlProvider'
 import { useAllPostsQuery, Post } from '../graphql/generated-types'
 
-const PostComponent: React.FC<Post> = ({ title, body }) => {
+const PostComponent: React.FC<Post> = ({ title, body, comments }) => {
   return (
     <div className='w-full mb-20'>
       <h1 className='text-2xl lg:text-4xl font-serif mt-7 leading-tight'>
@@ -11,6 +11,8 @@ const PostComponent: React.FC<Post> = ({ title, body }) => {
       <p className='font-sans mt-10 pr-0 lg:pr-14 font-light leading-7'>
         {body}
       </p>
+
+      <p className='mt-4'>{comments.length} comments</p>
     </div>
 
   )

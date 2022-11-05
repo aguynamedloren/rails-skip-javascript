@@ -25,6 +25,15 @@ export type Book = {
   updatedAt: Scalars['ISO8601DateTime'];
 };
 
+export type Comment = {
+  __typename?: 'Comment';
+  createdAt: Scalars['ISO8601DateTime'];
+  post: Post;
+  text?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['ISO8601DateTime'];
+  uuid: Scalars['ID'];
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   /** An example field added by the generator */
@@ -34,6 +43,7 @@ export type Mutation = {
 export type Post = {
   __typename?: 'Post';
   body?: Maybe<Scalars['String']>;
+  comments?: Maybe<Array<Comment>>;
   createdAt: Scalars['ISO8601DateTime'];
   title?: Maybe<Scalars['String']>;
   updatedAt: Scalars['ISO8601DateTime'];
@@ -54,7 +64,7 @@ export type AllBooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 
 export type AllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type AllPostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', uuid: string, title?: string | null, body?: string | null }> };
+export type AllPostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', uuid: string, title?: string | null, body?: string | null, comments?: Array<{ __typename?: 'Comment', uuid: string, text?: string | null }> | null }> };
 
 
 export const AllBooksDocument = gql`
@@ -98,6 +108,10 @@ export const AllPostsDocument = gql`
     uuid
     title
     body
+    comments {
+      uuid
+      text
+    }
   }
 }
     `;
