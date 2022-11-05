@@ -14,11 +14,9 @@ const App: React.FC = () => {
     <div>
       <h1>Books</h1>
       <ul>
-        {data.books.map((book) => {
-          return (
-            <Book {...book} key={book.hello} />
-          )
-        })}
+        {data.books.map((book) => (
+          <Book {...book} key={book.id} />
+        ))}
       </ul>
     </div>
   )
