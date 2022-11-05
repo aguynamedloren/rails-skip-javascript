@@ -31,15 +31,30 @@ export type Mutation = {
   testField: Scalars['String'];
 };
 
+export type Post = {
+  __typename?: 'Post';
+  body?: Maybe<Scalars['String']>;
+  createdAt: Scalars['ISO8601DateTime'];
+  title?: Maybe<Scalars['String']>;
+  updatedAt: Scalars['ISO8601DateTime'];
+  uuid: Scalars['ID'];
+};
+
 export type Query = {
   __typename?: 'Query';
   books: Array<Book>;
+  posts: Array<Post>;
 };
 
 export type AllBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AllBooksQuery = { __typename?: 'Query', books: Array<{ __typename?: 'Book', id: string, title?: string | null }> };
+
+export type AllPostsQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type AllPostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', uuid: string, title?: string | null, body?: string | null }> };
 
 
 export const AllBooksDocument = gql`
@@ -77,3 +92,39 @@ export function useAllBooksLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AllBooksQueryHookResult = ReturnType<typeof useAllBooksQuery>;
 export type AllBooksLazyQueryHookResult = ReturnType<typeof useAllBooksLazyQuery>;
 export type AllBooksQueryResult = Apollo.QueryResult<AllBooksQuery, AllBooksQueryVariables>;
+export const AllPostsDocument = gql`
+    query allPosts {
+  posts {
+    uuid
+    title
+    body
+  }
+}
+    `;
+
+/**
+ * __useAllPostsQuery__
+ *
+ * To run a query within a React component, call `useAllPostsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useAllPostsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useAllPostsQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useAllPostsQuery(baseOptions?: Apollo.QueryHookOptions<AllPostsQuery, AllPostsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument, options);
+      }
+export function useAllPostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<AllPostsQuery, AllPostsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<AllPostsQuery, AllPostsQueryVariables>(AllPostsDocument, options);
+        }
+export type AllPostsQueryHookResult = ReturnType<typeof useAllPostsQuery>;
+export type AllPostsLazyQueryHookResult = ReturnType<typeof useAllPostsLazyQuery>;
+export type AllPostsQueryResult = Apollo.QueryResult<AllPostsQuery, AllPostsQueryVariables>;

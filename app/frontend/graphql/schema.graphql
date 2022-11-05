@@ -17,6 +17,15 @@ type Mutation {
   testField: String!
 }
 
+type Post {
+  body: String
+  createdAt: ISO8601DateTime!
+  title: String
+  updatedAt: ISO8601DateTime!
+  uuid: ID!
+}
+
 type Query {
   books: [Book!]!
+  posts: [Post!]!
 }

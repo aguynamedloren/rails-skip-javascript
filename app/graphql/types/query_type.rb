@@ -5,9 +5,14 @@ module Types
     include GraphQL::Types::Relay::HasNodesField
 
     field :books, [Types::BookType], null: false
+    field :posts, [Types::PostType], null: false
 
     def books
       Book.all
+    end
+
+    def posts
+      Post.all
     end
   end
 end
