@@ -12,7 +12,7 @@ const client = new ApolloClient({
     credentials: 'same-origin',
     headers: {
       'X-CSRF-Token': csrfToken
-    },
+    }
   }),
   cache: new InMemoryCache()
 })
