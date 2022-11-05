@@ -7,9 +7,11 @@ const Book: React.FC = ({ title }) => {
 
 const App: React.FC = () => {
   const { data, loading } = useAllBooksQuery()
+
   if (loading) {
     return <span>Loading...</span>
   }
+
   return (
     <div>
       <h1>Books</h1>
