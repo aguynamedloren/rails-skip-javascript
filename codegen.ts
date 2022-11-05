@@ -4,10 +4,9 @@ import type { CodegenConfig } from '@graphql-codegen/cli';
 const config: CodegenConfig = {
   overwrite: true,
   schema: "app/frontend/graphql/schema.graphql",
-  documents: "app/frontend/**/*.tsx",
+  documents: "app/frontend/components/**/*.tsx",
   generates: {
-    "app/frontend/graphql/": {
-      preset: "client",
+    "app/frontend/graphql/generated-types.ts": {
       plugins: ['typescript-react-apollo']
     }
   }

@@ -1,6 +1,6 @@
 import gql from 'graphql-tag'
 import { withProvider } from './graphqlProvider'
-import { useAllBooksQuery } from 'graphql/graphql'
+import { useAllBooksQuery } from '../graphql/generated-types'
 
 const booksQuery = gql`
   query allBooks {
