@@ -3,5 +3,15 @@ Rails.application.routes.draw do
     mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
   end
   post "/graphql", to: "graphql#execute"
+
+  match(
+    "*path",
+    to: "pages#index",
+    via: :all,
+    constraints: lambda { |req|
+      ["graphiql", "graphql"].exclude?(req.path)
+    }
+  )
+
   root "pages#index"
 end
