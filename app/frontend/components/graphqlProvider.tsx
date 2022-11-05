@@ -16,7 +16,7 @@ const client = new ApolloClient({
   }),
   cache: new InMemoryCache()
 })
-export const withProvider = (
+export const withGraphqlProvider = (
   WrappedComponent: React.ComponentType,
   props: any = {}
 ) => () => {
