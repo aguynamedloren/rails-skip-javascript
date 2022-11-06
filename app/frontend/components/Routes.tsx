@@ -3,6 +3,7 @@ import BlogLayout from '/layouts/BlogLayout'
 import Post from '/pages/Post'
 import Posts from '/pages/Posts'
 import About from '/pages/About'
+import AdminPosts from '/pages/Admin/Posts'
 import ErrorPage from '/pages/ErrorPage'
 
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: '/about',
         element: <About />
+      },
+      {
+        path: '/admin/posts',
+        element: <AdminPosts />
       }
     ]
   }
