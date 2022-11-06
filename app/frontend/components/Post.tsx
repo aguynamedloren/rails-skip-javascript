@@ -3,7 +3,7 @@ import { Container, Heading, Text } from '@chakra-ui/react'
 
 const Post: React.FC<PostType> = ({ title, body, comments }) => {
   return (
-    <Container mb='5' pt='10'>
+    <Container mb='5'>
       <Heading size='xl' mb='5'>
         {title}
       </Heading>
