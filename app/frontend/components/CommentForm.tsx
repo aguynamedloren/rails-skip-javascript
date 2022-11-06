@@ -1,6 +1,9 @@
 import { useForm } from 'react-hook-form'
 import { gql, useMutation } from '@apollo/client'
-import { SinglePostDocument } from '/graphql/generated-types'
+import {
+  useCreateCommentMutationMutation,
+  SinglePostDocument
+} from '/graphql/generated-types'
 
 import {
   FormErrorMessage,
@@ -8,15 +11,6 @@ import {
   Textarea,
   Button
 } from '@chakra-ui/react'
-
-const CREATE = gql`
-  mutation createCommentMutation($input: CreateCommentInput!) {
-    createComment(input: $input) {
-      uuid
-      text
-    }
-  }
-`
 
 const CommentForm: React.FC<{ postUuid: string }> = ({ postUuid }) => {
   const {
@@ -26,7 +20,7 @@ const CommentForm: React.FC<{ postUuid: string }> = ({ postUuid }) => {
     formState: { errors, isSubmitting }
   } = useForm()
 
-  const [createComment, { loading, error }] = useMutation(CREATE, {
+  const [createComment, { loading, error }] = useCreateCommentMutationMutation({
     onCompleted: () => {
       reset()
     },

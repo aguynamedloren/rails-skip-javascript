@@ -1,0 +1,6 @@
+mutation createCommentMutation($input: CreateCommentInput!) {
+  createComment(input: $input) {
+    uuid
+    text
+  }
+}
