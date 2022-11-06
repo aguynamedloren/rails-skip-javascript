@@ -11,6 +11,8 @@ module Mutations
     def resolve(uuid:, **attributes)
       post = Post.find_by(uuid: uuid)
       post.update!(attributes)
+
+      post
     end
   end
 end

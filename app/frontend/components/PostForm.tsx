@@ -2,8 +2,9 @@ import { useForm } from 'react-hook-form'
 import { gql, useMutation } from '@apollo/client'
 import {
   Post,
-  useCreateCommentMutation,
-  SinglePostDocument
+  useUpdatePostMutation,
+  SinglePostDocument,
+  AllPostsDocument
 } from '/graphql/generated-types'
 
 import {
@@ -12,10 +13,13 @@ import {
   FormLabel,
   Input,
   Textarea,
-  Button
+  Button,
+  useToast
 } from '@chakra-ui/react'
 
 const PostForm: React.FC<Post> = ({ uuid, title, body }) => {
+  const toast = useToast()
+
   const {
     handleSubmit,
     register,
@@ -28,17 +32,24 @@ const PostForm: React.FC<Post> = ({ uuid, title, body }) => {
     }
   })
 
-  // const [createComment, { loading, error }] = useCreateCommentMutation({
-  //   onCompleted: () => {
-  //     reset()
-  //   },
-  //   refetchQueries: [
-  //     { query: SinglePostDocument, variables: { uuid: postUuid } }
-  //   ]
-  // })
+  const [updatePost, { loading, error }] = useUpdatePostMutation({
+    onCompleted: () => {
+      toast({
+        position: 'top',
+        title: 'Post updated',
+        status: 'success',
+        duration: 3000,
+        isClosable: true
+      })
+    },
+    refetchQueries: [
+      { query: SinglePostDocument, variables: { uuid } },
+      { query: AllPostsDocument }
+    ]
+  })
 
   const onSubmit = values => {
-    // createComment({ variables: { input: { postUuid, ...values } } })
+    updatePost({ variables: { input: { uuid, ...values } } })
   }
 
   return (
