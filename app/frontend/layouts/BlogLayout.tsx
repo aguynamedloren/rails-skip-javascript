@@ -1,10 +1,11 @@
 import { Outlet } from 'react-router-dom'
+import { Container } from '@chakra-ui/react'
 
 const BlogLayout: React.FC = () => {
   return (
-    <main>
+    <Container>
       <Outlet />
-    </main>
+    </Container>
   )
 }
 

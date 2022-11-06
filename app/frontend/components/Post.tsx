@@ -1,14 +1,17 @@
 import { Post as PostType } from '/graphql/generated-types'
+import { Container, Heading, Text } from '@chakra-ui/react'
 
 const Post: React.FC<PostType> = ({ title, body, comments }) => {
   return (
-    <div>
-      <h1>{title}</h1>
+    <Container mb='5' pt='10'>
+      <Heading size='xl' mb='5'>
+        {title}
+      </Heading>
 
-      <p>{body}</p>
+      <Text mb='4'>{body}</Text>
 
-      <p>{comments.length} comments</p>
-    </div>
+      <Text fontWeight='500'>{comments.length} comments</Text>
+    </Container>
   )
 }
 
