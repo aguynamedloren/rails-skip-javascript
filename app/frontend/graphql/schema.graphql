@@ -36,5 +36,6 @@ type Post {
 
 type Query {
   books: [Book!]!
+  post(uuid: ID!): Post
   posts: [Post!]!
 }
