@@ -1,17 +1,18 @@
 import { Post as PostType } from '/graphql/generated-types'
-import { Container, Heading, Text } from '@chakra-ui/react'
+import { Link } from 'react-router-dom'
+import { Box, Heading, Text } from '@chakra-ui/react'
 
-const Post: React.FC<PostType> = ({ title, body, comments }) => {
+const Post: React.FC<PostType> = ({ uuid, title, body, comments }) => {
   return (
-    <Container mb='5'>
+    <Box mb='5'>
       <Heading size='xl' mb='5'>
-        {title}
+        <Link to={`/posts/${uuid}`}>{title}</Link>
       </Heading>
 
       <Text mb='4'>{body}</Text>
 
       <Text fontWeight='500'>{comments.length} comments</Text>
-    </Container>
+    </Box>
   )
 }
 

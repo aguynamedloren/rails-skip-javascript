@@ -53,7 +53,13 @@ export type Post = {
 export type Query = {
   __typename?: 'Query';
   books: Array<Book>;
+  post?: Maybe<Post>;
   posts: Array<Post>;
+};
+
+
+export type QueryPostArgs = {
+  uuid: Scalars['ID'];
 };
 
 export type AllBooksQueryVariables = Exact<{ [key: string]: never; }>;
@@ -65,6 +71,13 @@ export type AllPostsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
 export type AllPostsQuery = { __typename?: 'Query', posts: Array<{ __typename?: 'Post', uuid: string, title?: string | null, body?: string | null, comments?: Array<{ __typename?: 'Comment', uuid: string, text?: string | null }> | null }> };
+
+export type SinglePostQueryVariables = Exact<{
+  uuid: Scalars['ID'];
+}>;
+
+
+export type SinglePostQuery = { __typename?: 'Query', post?: { __typename?: 'Post', uuid: string, title?: string | null, body?: string | null, comments?: Array<{ __typename?: 'Comment', uuid: string, text?: string | null }> | null } | null };
 
 
 export const AllBooksDocument = gql`
@@ -142,3 +155,44 @@ export function useAllPostsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<A
 export type AllPostsQueryHookResult = ReturnType<typeof useAllPostsQuery>;
 export type AllPostsLazyQueryHookResult = ReturnType<typeof useAllPostsLazyQuery>;
 export type AllPostsQueryResult = Apollo.QueryResult<AllPostsQuery, AllPostsQueryVariables>;
+export const SinglePostDocument = gql`
+    query singlePost($uuid: ID!) {
+  post(uuid: $uuid) {
+    uuid
+    title
+    body
+    comments {
+      uuid
+      text
+    }
+  }
+}
+    `;
+
+/**
+ * __useSinglePostQuery__
+ *
+ * To run a query within a React component, call `useSinglePostQuery` and pass it any options that fit your needs.
+ * When your component renders, `useSinglePostQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useSinglePostQuery({
+ *   variables: {
+ *      uuid: // value for 'uuid'
+ *   },
+ * });
+ */
+export function useSinglePostQuery(baseOptions: Apollo.QueryHookOptions<SinglePostQuery, SinglePostQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<SinglePostQuery, SinglePostQueryVariables>(SinglePostDocument, options);
+      }
+export function useSinglePostLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<SinglePostQuery, SinglePostQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<SinglePostQuery, SinglePostQueryVariables>(SinglePostDocument, options);
+        }
+export type SinglePostQueryHookResult = ReturnType<typeof useSinglePostQuery>;
+export type SinglePostLazyQueryHookResult = ReturnType<typeof useSinglePostLazyQuery>;
+export type SinglePostQueryResult = Apollo.QueryResult<SinglePostQuery, SinglePostQueryVariables>;

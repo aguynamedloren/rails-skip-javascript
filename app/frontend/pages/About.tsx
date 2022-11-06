@@ -2,7 +2,7 @@ import { Container, Heading, Text } from '@chakra-ui/react'
 
 const About: React.FC = () => {
   return (
-    <Container>
+    <>
       <Heading size='xl' mb='5'>
         About us!
       </Heading>
@@ -23,7 +23,7 @@ const About: React.FC = () => {
         succulents, unicorn polaroid JOMO sartorial organic kickstarter selvage
         tofu.
       </Text>
-    </Container>
+    </>
   )
 }
 

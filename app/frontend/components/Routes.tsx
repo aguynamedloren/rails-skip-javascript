@@ -1,5 +1,6 @@
 import { withGraphqlProvider } from '/components/graphqlProvider'
 import BlogLayout from '/layouts/BlogLayout'
+import Post from '/pages/Post'
 import Posts from '/pages/Posts'
 import About from '/pages/About'
 import ErrorPage from '/pages/ErrorPage'
@@ -15,6 +16,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Posts />
+      },
+      {
+        path: '/posts/:postId',
+        element: <Post />
       },
       {
         path: '/about',

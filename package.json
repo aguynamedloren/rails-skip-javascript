@@ -4,7 +4,10 @@
     "codegen": "graphql-codegen --config codegen.ts"
   },
   "ts-standard": {
-    "ignore": ["dist", "app/frontend/graphql/generated-types.ts"]
+    "ignore": [
+      "dist",
+      "app/frontend/graphql/generated-types.ts"
+    ]
   },
   "dependencies": {
     "@apollo/client": "^3.7.1",

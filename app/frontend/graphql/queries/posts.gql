@@ -9,3 +9,15 @@ query allPosts {
     }
   }
 }
+
+query singlePost($uuid: ID!) {
+  post(uuid: $uuid) {
+    uuid
+    title
+    body
+    comments {
+      uuid
+      text
+    }
+  }
+}
