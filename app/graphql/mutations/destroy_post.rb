@@ -10,7 +10,7 @@ module Mutations
     # type Types::PostType
 
     def resolve(uuid:)
-      post = Post.find_by(uuid: post_uuid)
+      post = Post.find_by(uuid: uuid)
 
       post.destroy!
     end

@@ -1,4 +1,14 @@
+import { useRef } from 'react'
+
 import {
+  AlertDialog,
+  AlertDialogBody,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogContent,
+  AlertDialogOverlay,
+  Button,
+  IconButton,
   HStack,
   Icon,
   Table,
@@ -8,12 +18,102 @@ import {
   Th,
   Td,
   TableContainer,
-  background
+  useDisclosure,
+  useToast
 } from '@chakra-ui/react'
-import { useAllPostsQuery } from '/graphql/generated-types'
+import {
+  useAllPostsQuery,
+  useDestroyPostMutationMutation,
+  AllPostsDocument
+} from '/graphql/generated-types'
 import { TbPencil, TbTrashX } from 'react-icons/tb'
 
-const Admin: React.FC = () => {
+const PostAlertDiaglog: React.FC = ({
+  isOpen,
+  cancelRef,
+  onClose,
+  postUuid
+}) => {
+  const toast = useToast()
+
+  const [destroyPost, { loading, error }] = useDestroyPostMutationMutation({
+    onCompleted: () => {
+      toast({
+        position: 'top',
+        title: 'Post deleted',
+        status: 'success',
+        duration: 3000,
+        isClosable: true
+      })
+    },
+    refetchQueries: [{ query: AllPostsDocument }]
+  })
+
+  const onDelete = () =>
+    destroyPost({ variables: { input: { uuid: postUuid } } })
+
+  return (
+    <AlertDialog
+      isOpen={isOpen}
+      leastDestructiveRef={cancelRef}
+      onClose={onClose}
+    >
+      <AlertDialogOverlay>
+        <AlertDialogContent>
+          <AlertDialogHeader fontSize='lg' fontWeight='bold'>
+            Delete Post
+          </AlertDialogHeader>
+
+          <AlertDialogBody>
+            Are you sure? You can't undo this action afterwards.
+          </AlertDialogBody>
+
+          <AlertDialogFooter>
+            <Button ref={cancelRef} onClick={onClose}>
+              Cancel
+            </Button>
+            <Button colorScheme='red' onClick={onDelete} ml={3}>
+              Delete
+            </Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialogOverlay>
+    </AlertDialog>
+  )
+}
+
+const PostRow: React.FC<{ title: string; uuid: string }> = ({
+  title,
+  uuid
+}) => {
+  const { isOpen, onOpen, onClose } = useDisclosure()
+  const cancelRef = useRef()
+
+  return (
+    <>
+      <Tr _hover={{ background: 'gray.50' }}>
+        <Td>{title}</Td>
+        <Td>
+          <HStack spacing={3} fontSize='large'>
+            <Icon as={TbPencil} />
+            <IconButton onClick={onOpen} variant='unstyled'>
+              <Icon as={TbTrashX} />
+            </IconButton>
+          </HStack>
+        </Td>
+      </Tr>
+
+      <PostAlertDiaglog
+        isOpen={isOpen}
+        leastDestructiveRef={cancelRef}
+        onClose={onClose}
+        postUuid={uuid}
+      />
+    </>
+  )
+}
+
+const PostTable: React.FC = () => {
   const { data, loading } = useAllPostsQuery()
 
   if (loading) {
@@ -29,16 +129,8 @@ const Admin: React.FC = () => {
           </Tr>
         </Thead>
         <Tbody>
-          {data.posts.map(({ title, uuid }) => (
-            <Tr key={uuid} _hover={{ background: 'gray.50' }}>
-              <Td>{title}</Td>
-              <Td>
-                <HStack spacing={3} fontSize='large'>
-                  <Icon as={TbPencil} />
-                  <Icon as={TbTrashX} />
-                </HStack>
-              </Td>
-            </Tr>
+          {data.posts.map(post => (
+            <PostRow key={post.uuid} {...post} />
           ))}
         </Tbody>
       </Table>
@@ -46,4 +138,4 @@ const Admin: React.FC = () => {
   )
 }
 
-export default Admin
+export default PostTable
