@@ -1,11 +1,11 @@
-  query allPosts {
-    posts {
+query allPosts {
+  posts {
+    uuid
+    title
+    body
+    comments {
       uuid
-      title
-      body
-      comments {
-        uuid
-        text
-      }
+      text
     }
   }
+}

@@ -4,11 +4,7 @@ import Posts from '/pages/Posts'
 import About from '/pages/About'
 import ErrorPage from '/pages/ErrorPage'
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route
-} from 'react-router-dom'
+import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 
 const router = createBrowserRouter([
   {
@@ -29,9 +25,7 @@ const router = createBrowserRouter([
 ])
 
 const Routes: React.FC = () => {
-  return (
-    <RouterProvider router={router} />
-  )
+  return <RouterProvider router={router} />
 }
 
 export default withGraphqlProvider(Routes)

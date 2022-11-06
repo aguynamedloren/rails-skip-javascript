@@ -18,7 +18,7 @@
     "jsx": "react-jsx",
     "noImplicitAny": true,
     "noImplicitThis": true,
-    "strictNullChecks": true,
+    "strictNullChecks": true
   },
-  "include": ["app/frontend", "vite.config.ts", "codegen.ts"],
+  "include": ["app/frontend", "vite.config.ts", "codegen.ts"]
 }

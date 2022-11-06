@@ -1,6 +1,6 @@
-  query allBooks {
-    books {
-      id
-      title
-    }
+query allBooks {
+  books {
+    id
+    title
   }
+}

@@ -10,7 +10,7 @@ const Posts: React.FC = () => {
 
   return (
     <>
-      {data.posts.map((post) => (
+      {data.posts.map(post => (
         <Post {...post} key={post.uuid} />
       ))}
     </>
