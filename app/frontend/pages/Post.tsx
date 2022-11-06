@@ -45,7 +45,7 @@ const PostPage: React.FC = () => {
             Leave a comment
           </Heading>
 
-          <CommentForm />
+          <CommentForm postUuid={postId} />
         </Box>
       </>
     )

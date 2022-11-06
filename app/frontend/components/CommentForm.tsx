@@ -1,4 +1,6 @@
 import { useForm } from 'react-hook-form'
+import { gql, useMutation } from '@apollo/client'
+import { SinglePostDocument } from '/graphql/generated-types'
 
 import {
   FormErrorMessage,
@@ -7,20 +9,34 @@ import {
   Button
 } from '@chakra-ui/react'
 
-const CommentForm: React.FC = () => {
+const CREATE = gql`
+  mutation createCommentMutation($input: CreateCommentInput!) {
+    createComment(input: $input) {
+      uuid
+      text
+    }
+  }
+`
+
+const CommentForm: React.FC<{ postUuid: string }> = ({ postUuid }) => {
   const {
     handleSubmit,
     register,
+    reset,
     formState: { errors, isSubmitting }
   } = useForm()
 
-  async function onSubmit (values) {
-    return await new Promise(resolve => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2))
-        resolve()
-      }, 3000)
-    })
+  const [createComment, { loading, error }] = useMutation(CREATE, {
+    onCompleted: () => {
+      reset()
+    },
+    refetchQueries: [
+      { query: SinglePostDocument, variables: { uuid: postUuid } }
+    ]
+  })
+
+  const onSubmit = values => {
+    createComment({ variables: { input: { postUuid, ...values } } })
   }
 
   return (
