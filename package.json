@@ -3,6 +3,9 @@
     "lint": "prettier-standard",
     "codegen": "graphql-codegen --config codegen.ts"
   },
+  "ts-standard": {
+    "ignore": ["dist", "app/frontend/graphql/generated-types.ts"]
+  },
   "dependencies": {
     "@apollo/client": "^3.7.1",
     "@chakra-ui/icons": "^2.0.11",
@@ -26,6 +29,7 @@
     "@vitejs/plugin-react": "^2.2.0",
     "autoprefixer": "^10.4.13",
     "prettier-standard": "^16.4.1",
+    "ts-standard": "^12.0.1",
     "typescript": "^4.8.4",
     "vite": "^3.2.0",
     "vite-plugin-ruby": "^3.1.2"

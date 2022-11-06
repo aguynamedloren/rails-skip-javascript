@@ -8,19 +8,11 @@ import {
   Collapse,
   Icon,
   Link,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
   useColorModeValue,
   useBreakpointValue,
   useDisclosure
 } from '@chakra-ui/react'
-import {
-  HamburgerIcon,
-  CloseIcon,
-  ChevronDownIcon,
-  ChevronRightIcon
-} from '@chakra-ui/icons'
+import { HamburgerIcon, CloseIcon, ChevronRightIcon } from '@chakra-ui/icons'
 
 import { Link as RouterLink } from 'react-router-dom'
 
@@ -32,13 +24,13 @@ export default function WithSubnavigation () {
       <Flex
         bg={useColorModeValue('white', 'gray.800')}
         color={useColorModeValue('gray.600', 'white')}
-        minH={'60px'}
+        minH='60px'
         py={{ base: 2 }}
         px={{ base: 4 }}
         borderBottom={1}
-        borderStyle={'solid'}
+        borderStyle='solid'
         borderColor={useColorModeValue('gray.200', 'gray.900')}
-        align={'center'}
+        align='center'
       >
         <Flex
           flex={{ base: 1, md: 'auto' }}
@@ -50,14 +42,14 @@ export default function WithSubnavigation () {
             icon={
               isOpen ? <CloseIcon w={3} h={3} /> : <HamburgerIcon w={5} h={5} />
             }
-            variant={'ghost'}
-            aria-label={'Toggle Navigation'}
+            variant='ghost'
+            aria-label='Toggle Navigation'
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
           <Text
             textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
+            fontFamily='heading'
             color={useColorModeValue('gray.800', 'white')}
           >
             Logo
@@ -70,26 +62,20 @@ export default function WithSubnavigation () {
 
         <Stack
           flex={{ base: 1, md: 0 }}
-          justify={'flex-end'}
-          direction={'row'}
+          justify='flex-end'
+          direction='row'
           spacing={6}
         >
-          <Button
-            as={'a'}
-            fontSize={'sm'}
-            fontWeight={400}
-            variant={'link'}
-            href={'#'}
-          >
+          <Button as='a' fontSize='sm' fontWeight={400} variant='link' href='#'>
             Sign In
           </Button>
           <Button
             display={{ base: 'none', md: 'inline-flex' }}
-            fontSize={'sm'}
+            fontSize='sm'
             fontWeight={600}
-            color={'white'}
-            bg={'pink.400'}
-            href={'#'}
+            color='white'
+            bg='pink.400'
+            href='#'
             _hover={{
               bg: 'pink.300'
             }}
@@ -112,14 +98,14 @@ const DesktopNav = () => {
   const popoverContentBgColor = useColorModeValue('white', 'gray.800')
 
   return (
-    <Stack direction={'row'} spacing={4}>
+    <Stack direction='row' spacing={4}>
       {NAV_ITEMS.map(navItem => (
         <Box key={navItem.label}>
           <Link
             as={RouterLink}
             p={2}
             to={navItem.href}
-            fontSize={'sm'}
+            fontSize='sm'
             fontWeight={500}
             color={linkColor}
             _hover={{
@@ -139,33 +125,33 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem) => {
   return (
     <Link
       href={href}
-      role={'group'}
-      display={'block'}
+      role='group'
+      display='block'
       p={2}
-      rounded={'md'}
+      rounded='md'
       _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}
     >
-      <Stack direction={'row'} align={'center'}>
+      <Stack direction='row' align='center'>
         <Box>
           <Text
-            transition={'all .3s ease'}
+            transition='all .3s ease'
             _groupHover={{ color: 'pink.400' }}
             fontWeight={500}
           >
             {label}
           </Text>
-          <Text fontSize={'sm'}>{subLabel}</Text>
+          <Text fontSize='sm'>{subLabel}</Text>
         </Box>
         <Flex
-          transition={'all .3s ease'}
-          transform={'translateX(-10px)'}
+          transition='all .3s ease'
+          transform='translateX(-10px)'
           opacity={0}
           _groupHover={{ opacity: '100%', transform: 'translateX(0)' }}
-          justify={'flex-end'}
-          align={'center'}
+          justify='flex-end'
+          align='center'
           flex={1}
         >
-          <Icon color={'pink.400'} w={5} h={5} as={ChevronRightIcon} />
+          <Icon color='pink.400' w={5} h={5} as={ChevronRightIcon} />
         </Flex>
       </Stack>
     </Link>
@@ -195,8 +181,8 @@ const MobileNavItem = ({ label, href }: NavItem) => {
         py={2}
         as={Link}
         href={href ?? '#'}
-        justify={'space-between'}
-        align={'center'}
+        justify='space-between'
+        align='center'
         _hover={{
           textDecoration: 'none'
         }}
@@ -215,11 +201,11 @@ const MobileNavItem = ({ label, href }: NavItem) => {
 interface NavItem {
   label: string
   subLabel?: string
-  children?: Array<NavItem>
+  children?: NavItem[]
   href?: string
 }
 
-const NAV_ITEMS: Array<NavItem> = [
+const NAV_ITEMS: NavItem[] = [
   {
     label: 'Home',
     href: '/'
