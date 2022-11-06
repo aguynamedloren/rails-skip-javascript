@@ -1,3 +1,11 @@
+mutation createPost($input: CreatePostInput!) {
+  createPost(input: $input) {
+    uuid
+    title
+    body
+  }
+}
+
 mutation destroyPost($input: DestroyPostInput!) {
   destroyPost(input: $input) {
     uuid
