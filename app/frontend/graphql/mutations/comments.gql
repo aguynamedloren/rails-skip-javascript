@@ -1,4 +1,4 @@
-mutation createCommentMutation($input: CreateCommentInput!) {
+mutation createComment($input: CreateCommentInput!) {
   createComment(input: $input) {
     uuid
     text

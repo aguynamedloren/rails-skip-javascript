@@ -2,7 +2,7 @@ import { useForm } from 'react-hook-form'
 import { gql, useMutation } from '@apollo/client'
 import {
   Post,
-  useCreateCommentMutationMutation,
+  useCreateCommentMutation,
   SinglePostDocument
 } from '/graphql/generated-types'
 
@@ -28,7 +28,7 @@ const PostForm: React.FC<Post> = ({ uuid, title, body }) => {
     }
   })
 
-  // const [createComment, { loading, error }] = useCreateCommentMutationMutation({
+  // const [createComment, { loading, error }] = useCreateCommentMutation({
   //   onCompleted: () => {
   //     reset()
   //   },

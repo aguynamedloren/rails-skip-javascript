@@ -110,26 +110,26 @@ export type UpdatePostInput = {
   uuid: Scalars['ID'];
 };
 
-export type CreateCommentMutationMutationVariables = Exact<{
+export type CreateCommentMutationVariables = Exact<{
   input: CreateCommentInput;
 }>;
 
 
-export type CreateCommentMutationMutation = { __typename?: 'Mutation', createComment?: { __typename?: 'Comment', uuid: string, text?: string | null } | null };
+export type CreateCommentMutation = { __typename?: 'Mutation', createComment?: { __typename?: 'Comment', uuid: string, text?: string | null } | null };
 
-export type DestroyPostMutationMutationVariables = Exact<{
+export type DestroyPostMutationVariables = Exact<{
   input: DestroyPostInput;
 }>;
 
 
-export type DestroyPostMutationMutation = { __typename?: 'Mutation', destroyPost?: { __typename?: 'DestroyPostPayload', uuid?: string | null } | null };
+export type DestroyPostMutation = { __typename?: 'Mutation', destroyPost?: { __typename?: 'DestroyPostPayload', uuid?: string | null } | null };
 
-export type UpdatePostMutationMutationVariables = Exact<{
+export type UpdatePostMutationVariables = Exact<{
   input: UpdatePostInput;
 }>;
 
 
-export type UpdatePostMutationMutation = { __typename?: 'Mutation', updatePost?: { __typename?: 'Post', uuid: string, title?: string | null, body?: string | null } | null };
+export type UpdatePostMutation = { __typename?: 'Mutation', updatePost?: { __typename?: 'Post', uuid: string, title?: string | null, body?: string | null } | null };
 
 export type AllBooksQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -149,75 +149,75 @@ export type SinglePostQueryVariables = Exact<{
 export type SinglePostQuery = { __typename?: 'Query', post?: { __typename?: 'Post', uuid: string, title?: string | null, body?: string | null, comments?: Array<{ __typename?: 'Comment', uuid: string, text?: string | null }> | null } | null };
 
 
-export const CreateCommentMutationDocument = gql`
-    mutation createCommentMutation($input: CreateCommentInput!) {
+export const CreateCommentDocument = gql`
+    mutation createComment($input: CreateCommentInput!) {
   createComment(input: $input) {
     uuid
     text
   }
 }
     `;
-export type CreateCommentMutationMutationFn = Apollo.MutationFunction<CreateCommentMutationMutation, CreateCommentMutationMutationVariables>;
+export type CreateCommentMutationFn = Apollo.MutationFunction<CreateCommentMutation, CreateCommentMutationVariables>;
 
 /**
- * __useCreateCommentMutationMutation__
+ * __useCreateCommentMutation__
  *
- * To run a mutation, you first call `useCreateCommentMutationMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useCreateCommentMutationMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useCreateCommentMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useCreateCommentMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [createCommentMutationMutation, { data, loading, error }] = useCreateCommentMutationMutation({
+ * const [createCommentMutation, { data, loading, error }] = useCreateCommentMutation({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useCreateCommentMutationMutation(baseOptions?: Apollo.MutationHookOptions<CreateCommentMutationMutation, CreateCommentMutationMutationVariables>) {
+export function useCreateCommentMutation(baseOptions?: Apollo.MutationHookOptions<CreateCommentMutation, CreateCommentMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<CreateCommentMutationMutation, CreateCommentMutationMutationVariables>(CreateCommentMutationDocument, options);
+        return Apollo.useMutation<CreateCommentMutation, CreateCommentMutationVariables>(CreateCommentDocument, options);
       }
-export type CreateCommentMutationMutationHookResult = ReturnType<typeof useCreateCommentMutationMutation>;
-export type CreateCommentMutationMutationResult = Apollo.MutationResult<CreateCommentMutationMutation>;
-export type CreateCommentMutationMutationOptions = Apollo.BaseMutationOptions<CreateCommentMutationMutation, CreateCommentMutationMutationVariables>;
-export const DestroyPostMutationDocument = gql`
-    mutation destroyPostMutation($input: DestroyPostInput!) {
+export type CreateCommentMutationHookResult = ReturnType<typeof useCreateCommentMutation>;
+export type CreateCommentMutationResult = Apollo.MutationResult<CreateCommentMutation>;
+export type CreateCommentMutationOptions = Apollo.BaseMutationOptions<CreateCommentMutation, CreateCommentMutationVariables>;
+export const DestroyPostDocument = gql`
+    mutation destroyPost($input: DestroyPostInput!) {
   destroyPost(input: $input) {
     uuid
   }
 }
     `;
-export type DestroyPostMutationMutationFn = Apollo.MutationFunction<DestroyPostMutationMutation, DestroyPostMutationMutationVariables>;
+export type DestroyPostMutationFn = Apollo.MutationFunction<DestroyPostMutation, DestroyPostMutationVariables>;
 
 /**
- * __useDestroyPostMutationMutation__
+ * __useDestroyPostMutation__
  *
- * To run a mutation, you first call `useDestroyPostMutationMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useDestroyPostMutationMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useDestroyPostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useDestroyPostMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [destroyPostMutationMutation, { data, loading, error }] = useDestroyPostMutationMutation({
+ * const [destroyPostMutation, { data, loading, error }] = useDestroyPostMutation({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useDestroyPostMutationMutation(baseOptions?: Apollo.MutationHookOptions<DestroyPostMutationMutation, DestroyPostMutationMutationVariables>) {
+export function useDestroyPostMutation(baseOptions?: Apollo.MutationHookOptions<DestroyPostMutation, DestroyPostMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<DestroyPostMutationMutation, DestroyPostMutationMutationVariables>(DestroyPostMutationDocument, options);
+        return Apollo.useMutation<DestroyPostMutation, DestroyPostMutationVariables>(DestroyPostDocument, options);
       }
-export type DestroyPostMutationMutationHookResult = ReturnType<typeof useDestroyPostMutationMutation>;
-export type DestroyPostMutationMutationResult = Apollo.MutationResult<DestroyPostMutationMutation>;
-export type DestroyPostMutationMutationOptions = Apollo.BaseMutationOptions<DestroyPostMutationMutation, DestroyPostMutationMutationVariables>;
-export const UpdatePostMutationDocument = gql`
-    mutation updatePostMutation($input: UpdatePostInput!) {
+export type DestroyPostMutationHookResult = ReturnType<typeof useDestroyPostMutation>;
+export type DestroyPostMutationResult = Apollo.MutationResult<DestroyPostMutation>;
+export type DestroyPostMutationOptions = Apollo.BaseMutationOptions<DestroyPostMutation, DestroyPostMutationVariables>;
+export const UpdatePostDocument = gql`
+    mutation updatePost($input: UpdatePostInput!) {
   updatePost(input: $input) {
     uuid
     title
@@ -225,32 +225,32 @@ export const UpdatePostMutationDocument = gql`
   }
 }
     `;
-export type UpdatePostMutationMutationFn = Apollo.MutationFunction<UpdatePostMutationMutation, UpdatePostMutationMutationVariables>;
+export type UpdatePostMutationFn = Apollo.MutationFunction<UpdatePostMutation, UpdatePostMutationVariables>;
 
 /**
- * __useUpdatePostMutationMutation__
+ * __useUpdatePostMutation__
  *
- * To run a mutation, you first call `useUpdatePostMutationMutation` within a React component and pass it any options that fit your needs.
- * When your component renders, `useUpdatePostMutationMutation` returns a tuple that includes:
+ * To run a mutation, you first call `useUpdatePostMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUpdatePostMutation` returns a tuple that includes:
  * - A mutate function that you can call at any time to execute the mutation
  * - An object with fields that represent the current status of the mutation's execution
  *
  * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
  *
  * @example
- * const [updatePostMutationMutation, { data, loading, error }] = useUpdatePostMutationMutation({
+ * const [updatePostMutation, { data, loading, error }] = useUpdatePostMutation({
  *   variables: {
  *      input: // value for 'input'
  *   },
  * });
  */
-export function useUpdatePostMutationMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePostMutationMutation, UpdatePostMutationMutationVariables>) {
+export function useUpdatePostMutation(baseOptions?: Apollo.MutationHookOptions<UpdatePostMutation, UpdatePostMutationVariables>) {
         const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useMutation<UpdatePostMutationMutation, UpdatePostMutationMutationVariables>(UpdatePostMutationDocument, options);
+        return Apollo.useMutation<UpdatePostMutation, UpdatePostMutationVariables>(UpdatePostDocument, options);
       }
-export type UpdatePostMutationMutationHookResult = ReturnType<typeof useUpdatePostMutationMutation>;
-export type UpdatePostMutationMutationResult = Apollo.MutationResult<UpdatePostMutationMutation>;
-export type UpdatePostMutationMutationOptions = Apollo.BaseMutationOptions<UpdatePostMutationMutation, UpdatePostMutationMutationVariables>;
+export type UpdatePostMutationHookResult = ReturnType<typeof useUpdatePostMutation>;
+export type UpdatePostMutationResult = Apollo.MutationResult<UpdatePostMutation>;
+export type UpdatePostMutationOptions = Apollo.BaseMutationOptions<UpdatePostMutation, UpdatePostMutationVariables>;
 export const AllBooksDocument = gql`
     query allBooks {
   books {

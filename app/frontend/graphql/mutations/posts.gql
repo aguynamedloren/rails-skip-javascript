@@ -1,10 +1,10 @@
-mutation destroyPostMutation($input: DestroyPostInput!) {
+mutation destroyPost($input: DestroyPostInput!) {
   destroyPost(input: $input) {
     uuid
   }
 }
 
-mutation updatePostMutation($input: UpdatePostInput!) {
+mutation updatePost($input: UpdatePostInput!) {
   updatePost(input: $input) {
     uuid
     title

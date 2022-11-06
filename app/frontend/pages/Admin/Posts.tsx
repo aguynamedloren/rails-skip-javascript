@@ -24,7 +24,7 @@ import {
 } from '@chakra-ui/react'
 import {
   useAllPostsQuery,
-  useDestroyPostMutationMutation,
+  useDestroyPostMutation,
   AllPostsDocument
 } from '/graphql/generated-types'
 import { TbPencil, TbTrashX } from 'react-icons/tb'
@@ -39,7 +39,7 @@ const PostAlertDiaglog: React.FC = ({
 }) => {
   const toast = useToast()
 
-  const [destroyPost, { loading, error }] = useDestroyPostMutationMutation({
+  const [destroyPost, { loading, error }] = useDestroyPostMutation({
     onCompleted: () => {
       toast({
         position: 'top',
