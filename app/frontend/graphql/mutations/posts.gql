@@ -3,3 +3,11 @@ mutation destroyPostMutation($input: DestroyPostInput!) {
     uuid
   }
 }
+
+mutation updatePostMutation($input: UpdatePostInput!) {
+  updatePost(input: $input) {
+    uuid
+    title
+    body
+  }
+}

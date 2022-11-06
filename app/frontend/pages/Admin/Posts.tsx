@@ -19,7 +19,8 @@ import {
   Td,
   TableContainer,
   useDisclosure,
-  useToast
+  useToast,
+  Link
 } from '@chakra-ui/react'
 import {
   useAllPostsQuery,
@@ -27,6 +28,8 @@ import {
   AllPostsDocument
 } from '/graphql/generated-types'
 import { TbPencil, TbTrashX } from 'react-icons/tb'
+
+import { Link as RouterLink } from 'react-router-dom'
 
 const PostAlertDiaglog: React.FC = ({
   isOpen,
@@ -82,7 +85,7 @@ const PostAlertDiaglog: React.FC = ({
   )
 }
 
-const PostRow: React.FC<{ title: string; uuid: string }> = ({
+const PostRow: React.FC<{ title: string, uuid: string }> = ({
   title,
   uuid
 }) => {
@@ -95,7 +98,9 @@ const PostRow: React.FC<{ title: string; uuid: string }> = ({
         <Td>{title}</Td>
         <Td>
           <HStack spacing={3} fontSize='large'>
-            <Icon as={TbPencil} />
+            <Link as={RouterLink} to={`/admin/posts/${uuid}`}>
+              <Icon as={TbPencil} />
+            </Link>
             <IconButton onClick={onOpen} variant='unstyled'>
               <Icon as={TbTrashX} />
             </IconButton>
