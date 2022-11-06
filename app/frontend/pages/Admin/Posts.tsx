@@ -85,7 +85,7 @@ const PostAlertDiaglog: React.FC = ({
   )
 }
 
-const PostRow: React.FC<{ title: string, uuid: string }> = ({
+const PostRow: React.FC<{ title: string; uuid: string }> = ({
   title,
   uuid
 }) => {
@@ -130,7 +130,22 @@ const PostTable: React.FC = () => {
         <Thead>
           <Tr>
             <Th>Post</Th>
-            <Th />
+            <Th>
+              <Button
+                as={RouterLink}
+                to='/admin/posts/new'
+                fontSize='sm'
+                fontWeight={600}
+                color='white'
+                bg='pink.400'
+                href='#'
+                _hover={{
+                  bg: 'pink.300'
+                }}
+              >
+                New Post
+              </Button>
+            </Th>
           </Tr>
         </Thead>
         <Tbody>

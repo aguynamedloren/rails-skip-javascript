@@ -3,7 +3,8 @@ import BlogLayout from '/layouts/BlogLayout'
 import Post from '/pages/Post'
 import Posts from '/pages/Posts'
 import About from '/pages/About'
-import AdminPost from '/pages/Admin/Post'
+import AdminNewPost from '/pages/Admin/NewPost'
+import AdminEditPost from '/pages/Admin/EditPost'
 import AdminPosts from '/pages/Admin/Posts'
 import ErrorPage from '/pages/ErrorPage'
 
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
       },
       {
         path: 'admin/posts/:postId',
-        element: <AdminPost />
+        element: <AdminEditPost />
+      },
+      {
+        path: 'admin/posts/new',
+        element: <AdminNewPost />
       }
     ]
   }

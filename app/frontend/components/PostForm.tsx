@@ -1,11 +1,5 @@
 import { useForm } from 'react-hook-form'
-import { gql, useMutation } from '@apollo/client'
-import {
-  Post,
-  useUpdatePostMutation,
-  SinglePostDocument,
-  AllPostsDocument
-} from '/graphql/generated-types'
+import { Post } from '/graphql/generated-types'
 
 import {
   FormErrorMessage,
@@ -13,13 +7,10 @@ import {
   FormLabel,
   Input,
   Textarea,
-  Button,
-  useToast
+  Button
 } from '@chakra-ui/react'
 
-const PostForm: React.FC<Post> = ({ uuid, title, body }) => {
-  const toast = useToast()
-
+const PostForm: React.FC<Post> = ({ title, body, onSubmit }) => {
   const {
     handleSubmit,
     register,
@@ -31,26 +22,6 @@ const PostForm: React.FC<Post> = ({ uuid, title, body }) => {
       body
     }
   })
-
-  const [updatePost, { loading, error }] = useUpdatePostMutation({
-    onCompleted: () => {
-      toast({
-        position: 'top',
-        title: 'Post updated',
-        status: 'success',
-        duration: 3000,
-        isClosable: true
-      })
-    },
-    refetchQueries: [
-      { query: SinglePostDocument, variables: { uuid } },
-      { query: AllPostsDocument }
-    ]
-  })
-
-  const onSubmit = values => {
-    updatePost({ variables: { input: { uuid, ...values } } })
-  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
