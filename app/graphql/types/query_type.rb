@@ -1,5 +1,7 @@
 module Types
   class QueryType < Types::BaseObject
+    field_class GraphqlDevise::Types::BaseField
+
     # Add `node(id: ID!) and `nodes(ids: [ID!]!)`
     include GraphQL::Types::Relay::HasNodeField
     include GraphQL::Types::Relay::HasNodesField
