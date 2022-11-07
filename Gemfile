@@ -22,6 +22,7 @@ gem "goldiloader"
 gem "graphql", "~> 2.0"
 
 gem "vite_rails"
+gem "graphql_devise"
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
