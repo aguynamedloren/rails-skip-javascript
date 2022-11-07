@@ -159,6 +159,14 @@ export type UserLogoutPayload = {
   authenticatable: Authenticatable;
 };
 
+export type UserLoginMutationVariables = Exact<{
+  email: Scalars['String'];
+  password: Scalars['String'];
+}>;
+
+
+export type UserLoginMutation = { __typename?: 'Mutation', userLogin?: { __typename?: 'UserLoginPayload', authenticatable: { __typename?: 'Authenticatable', email: string }, credentials: { __typename?: 'Credential', accessToken: string, client: string, expiry: number, tokenType: string, uid: string } } | null };
+
 export type CreateCommentMutationVariables = Exact<{
   input: CreateCommentInput;
 }>;
@@ -205,6 +213,49 @@ export type SinglePostQueryVariables = Exact<{
 export type SinglePostQuery = { __typename?: 'Query', post?: { __typename?: 'Post', uuid: string, title?: string | null, body?: string | null, comments?: Array<{ __typename?: 'Comment', uuid: string, text?: string | null }> | null } | null };
 
 
+export const UserLoginDocument = gql`
+    mutation userLogin($email: String!, $password: String!) {
+  userLogin(email: $email, password: $password) {
+    authenticatable {
+      email
+    }
+    credentials {
+      accessToken
+      client
+      expiry
+      tokenType
+      uid
+    }
+  }
+}
+    `;
+export type UserLoginMutationFn = Apollo.MutationFunction<UserLoginMutation, UserLoginMutationVariables>;
+
+/**
+ * __useUserLoginMutation__
+ *
+ * To run a mutation, you first call `useUserLoginMutation` within a React component and pass it any options that fit your needs.
+ * When your component renders, `useUserLoginMutation` returns a tuple that includes:
+ * - A mutate function that you can call at any time to execute the mutation
+ * - An object with fields that represent the current status of the mutation's execution
+ *
+ * @param baseOptions options that will be passed into the mutation, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options-2;
+ *
+ * @example
+ * const [userLoginMutation, { data, loading, error }] = useUserLoginMutation({
+ *   variables: {
+ *      email: // value for 'email'
+ *      password: // value for 'password'
+ *   },
+ * });
+ */
+export function useUserLoginMutation(baseOptions?: Apollo.MutationHookOptions<UserLoginMutation, UserLoginMutationVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useMutation<UserLoginMutation, UserLoginMutationVariables>(UserLoginDocument, options);
+      }
+export type UserLoginMutationHookResult = ReturnType<typeof useUserLoginMutation>;
+export type UserLoginMutationResult = Apollo.MutationResult<UserLoginMutation>;
+export type UserLoginMutationOptions = Apollo.BaseMutationOptions<UserLoginMutation, UserLoginMutationVariables>;
 export const CreateCommentDocument = gql`
     mutation createComment($input: CreateCommentInput!) {
   createComment(input: $input) {
