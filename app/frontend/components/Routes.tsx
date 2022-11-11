@@ -7,6 +7,7 @@ import AdminNewPost from '/pages/Admin/NewPost'
 import AdminEditPost from '/pages/Admin/EditPost'
 import AdminPosts from '/pages/Admin/Posts'
 import ErrorPage from '/pages/ErrorPage'
+import Login from '/pages/Login'
 
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
       {
         index: true,
         element: <Posts />
+      },
+      {
+        path: '/login',
+        element: <Login />
       },
       {
         path: '/posts/:postId',
