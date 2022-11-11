@@ -3,13 +3,34 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Input
+  Input,
+  Text,
+  useToast
 } from '@chakra-ui/react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { useUserLoginMutation } from '/graphql/generated-types'
 
 const Login: React.FC = () => {
+  const toast = useToast()
+  const navigate = useNavigate()
+
+  const [loginUser, { loading, error }] = useUserLoginMutation({
+    onCompleted: () => {
+      toast({
+        position: 'top',
+        title: 'Logged in!',
+        status: 'success',
+        duration: 3000,
+        isClosable: true
+      })
+
+      navigate('/admin/posts')
+    }
+  })
+
   const onSubmit = values => {
-    console.log(values)
+    loginUser({ variables: { ...values } })
   }
 
   const {
@@ -44,10 +65,17 @@ const Login: React.FC = () => {
             })}
           />
         </FormControl>
+
+        {error && (
+          <Text mt='2' color='red.500'>
+            {error.message}
+          </Text>
+        )}
+
         <Button
           mt={4}
           colorScheme='teal'
-          isLoading={isSubmitting}
+          isLoading={isSubmitting || loading}
           type='submit'
         >
           Submit
