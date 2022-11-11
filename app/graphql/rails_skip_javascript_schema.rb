@@ -1,7 +1,8 @@
 class RailsSkipJavascriptSchema < GraphQL::Schema
   use GraphqlDevise::SchemaPlugin.new(
-    query:            Types::QueryType,
-    mutation:         Types::MutationType,
+    query:                Types::QueryType,
+    mutation:             Types::MutationType,
+    authenticate_default: false,
     resource_loaders: [
       GraphqlDevise::ResourceLoader.new(User, only: [:login, :logout])
     ]
