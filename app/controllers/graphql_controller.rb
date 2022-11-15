@@ -12,10 +12,10 @@ class GraphqlController < ApplicationController
     operation_name = params[:operationName]
     context = gql_devise_context(User)
     result = RailsSkipJavascriptSchema.execute(
-        query,
-        variables: variables,
-        context: context,
-        operation_name: operation_name
+      query,
+      variables: variables,
+      context: context,
+      operation_name: operation_name
     )
     render json: result
   rescue => e
