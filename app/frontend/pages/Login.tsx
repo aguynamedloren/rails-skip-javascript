@@ -29,7 +29,8 @@ const Login: React.FC = () => {
     }) => {
       const config = {
         expires: new Date(expiry * 1000),
-        path: '/'
+        path: '/',
+        sameSite: 'strict'
       }
 
       setCookie('auth-access-token', accessToken, config)
