@@ -10,32 +10,16 @@ import {
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { useUserLoginMutation } from '/graphql/generated-types'
-import { useCookies } from 'react-cookie'
+import { useAuth } from '/contexts/AuthContext'
 
 const Login: React.FC = () => {
   const toast = useToast()
   const navigate = useNavigate()
-  const [, setCookie] = useCookies([
-    'auth-access-token',
-    'auth-client',
-    'auth-uid'
-  ])
+  const auth = useAuth()
 
   const [loginUser, { loading, error }] = useUserLoginMutation({
-    onCompleted: ({
-      userLogin: {
-        credentials: { accessToken, client, expiry, uid }
-      }
-    }) => {
-      const config = {
-        expires: new Date(expiry * 1000),
-        path: '/',
-        sameSite: 'strict'
-      }
-
-      setCookie('auth-access-token', accessToken, config)
-      setCookie('auth-client', client, config)
-      setCookie('auth-uid', uid, config)
+    onCompleted: ({ userLogin: { credentials } }) => {
+      auth.signin(credentials)
 
       toast({
         position: 'top',
