@@ -3,6 +3,7 @@ import BlogLayout from '/layouts/BlogLayout'
 import Post from '/pages/Post'
 import Posts from '/pages/Posts'
 import About from '/pages/About'
+import AdminLayout from '/layouts/AdminLayout'
 import AdminNewPost from '/pages/Admin/NewPost'
 import AdminEditPost from '/pages/Admin/EditPost'
 import AdminPosts from '/pages/Admin/Posts'
@@ -34,16 +35,22 @@ const router = createBrowserRouter([
         element: <About />
       },
       {
-        path: '/admin/posts',
-        element: <AdminPosts />
-      },
-      {
-        path: 'admin/posts/:postId',
-        element: <AdminEditPost />
-      },
-      {
-        path: 'admin/posts/new',
-        element: <AdminNewPost />
+        path: '/admin',
+        element: <AdminLayout />,
+        children: [
+          {
+            path: 'posts',
+            element: <AdminPosts />
+          },
+          {
+            path: 'posts/:postId',
+            element: <AdminEditPost />
+          },
+          {
+            path: 'posts/new',
+            element: <AdminNewPost />
+          }
+        ]
       }
     ]
   }
