@@ -17,13 +17,20 @@ export const useAuth = () => {
   return useContext(AuthContext)
 }
 
+export const isAuthenticated = () => {
+  const auth = useAuth()
+  return auth?.loggedIn
+}
+
 // Provider hook that creates auth object and handles state
 function useProvideAuth () {
-  const [, setCookie] = useCookies([
+  const [cookies, setCookie, removeCookie] = useCookies([
     'auth-access-token',
     'auth-client',
     'auth-uid'
   ])
+
+  const loggedIn = !!cookies['auth-access-token']
 
   const signin = ({ accessToken, client, expiry, uid }) => {
     const config = {
@@ -37,9 +44,16 @@ function useProvideAuth () {
     setCookie('auth-uid', uid, config)
   }
 
-  const signout = () => {}
+  const signout = () => {
+    const config = { path: '/' }
+
+    removeCookie('auth-access-token', config)
+    removeCookie('auth-client', config)
+    removeCookie('auth-uid', config)
+  }
 
   return {
+    loggedIn,
     signin,
     signout
   }

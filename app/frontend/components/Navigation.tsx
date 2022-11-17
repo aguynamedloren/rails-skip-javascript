@@ -14,10 +14,41 @@ import {
 } from '@chakra-ui/react'
 import { HamburgerIcon, CloseIcon, ChevronRightIcon } from '@chakra-ui/icons'
 
+import { isAuthenticated, useAuth } from '/contexts/AuthContext'
+
 import { Link as RouterLink } from 'react-router-dom'
 
 export default function WithSubnavigation () {
   const { isOpen, onToggle } = useDisclosure()
+
+  const auth = useAuth()
+
+  const button = () => {
+    if (isAuthenticated()) {
+      return (
+        <Button
+          onClick={auth.signout}
+          fontSize='sm'
+          fontWeight={400}
+          variant='link'
+        >
+          Sign Out
+        </Button>
+      )
+    } else {
+      return (
+        <Button
+          as={RouterLink}
+          fontSize='sm'
+          fontWeight={400}
+          variant='link'
+          to='/login'
+        >
+          Sign In
+        </Button>
+      )
+    }
+  }
 
   return (
     <Box>
@@ -66,22 +97,7 @@ export default function WithSubnavigation () {
           direction='row'
           spacing={6}
         >
-          <Button as='a' fontSize='sm' fontWeight={400} variant='link' href='#'>
-            Sign In
-          </Button>
-          <Button
-            display={{ base: 'none', md: 'inline-flex' }}
-            fontSize='sm'
-            fontWeight={600}
-            color='white'
-            bg='pink.400'
-            href='#'
-            _hover={{
-              bg: 'pink.300'
-            }}
-          >
-            Sign Up
-          </Button>
+          {button()}
         </Stack>
       </Flex>
 
