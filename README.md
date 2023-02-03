@@ -1,6 +1,6 @@
 # React, Rails, and GraphQL
 
-A production-ready implementation with the following libraries and packages:
+A production-ready codebase with the following libraries and packages:
 
 * Rails 7
 * GraphQL (Apollo Client, GraphQL Codegen)
