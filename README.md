@@ -1,22 +1,12 @@
-# README
+# React, Rails, and GraphQL
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A production-ready implementation with the following libraries and packages:
 
-Things you may want to cover:
-
-- Ruby version
-
-- System dependencies
-
-- Configuration
-
-- Database creation
-
-- Database initialization
-
-- How to run the test suite
-
-- Services (job queues, cache servers, search engines, etc.)
-
-- Deployment instructions
+* Rails 7
+* GraphQL (Apollo Client, GraphQL Codegen)
+* Devise
+* Vite (webpack alternative: frontend dev server + bundler utility)
+* TypeScript
+* Chakra UI
+* prettier-standard (formats with Prettier and lints with ESLint+Standard)
+* standardrb
